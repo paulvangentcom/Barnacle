@@ -60,7 +60,7 @@ bar = barnacle.preset('zombie') #or with a specific preset (see docs for full li
 
 for i in range(0, 101): #whatever loop you run
     bar.draw(i, 100) #give it current step, total steps, and the bar draws itself.
-	#some time consuming task here
+    #some time consuming task here
 ```
 
 `draw` and expects two arguments:
@@ -71,8 +71,9 @@ Alternatively you can also get the bar as a string, in case you want more contro
 ```Python
 for i in range(0, 101): #whatever loop you run
     bar_string = bar.update_bar(i, 100) #give it current step, total steps, and the bar draws itself.
-#now you are free to do anything you want with the string object, print it, eat it, cook it, whatever!
-#some time consuming task here
+    #now you are free to do anything you want with the string object, print it, eat it, cook it, whatever!
+    
+    #some time consuming task here
 ```
 
 Find what presets are available here:
