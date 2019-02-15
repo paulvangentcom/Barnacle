@@ -92,6 +92,7 @@ class Progbar(object):
 
             if self.target is not None:
                 bar = self.progbar.update_bar(current, self.target)
+                bar += ' [%s/%s] steps' %(current, self.target)
                 if current == self.target and self.random == True:
                     self.progbar = barnacle.random()
             else:

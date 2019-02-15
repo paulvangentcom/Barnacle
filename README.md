@@ -1,6 +1,6 @@
 # BARnacle - Flexible and Fun Progress Bars
 
-Barnacle contains progress bars that easily attach themselves to your programs. Use them to fun-up all of your and other's Python applications that require time to execute. It started off as a [Keras plugin (and it still is!)](#keras-plugin) to liven up my deep learning sessions, but has since become more general in scope. 
+Barnacle contains progress bars that easily attach themselves to your programs. Use them to fun-up all of your and others' Python applications that require time to execute. It started off as a [Keras plugin (and it still is!)](#keras-plugin) to liven up my deep learning sessions, but has since become more general in scope. 
 
 Get your own Barnacle today!
 
@@ -26,7 +26,7 @@ Tables hate us:
 
 We LOVE Keras:
 
-![keras bar](gifs/Keras.gif) [Plugin included](#keras-plugin)
+![keras bar](gifs/Keras.gif) [Keras plugin included](#keras-plugin)
 
 
 Many more presets are available and Barnacle offers the flexibility to design your own as well. Barnacle aims to be a simple rendering engine for progress bars of all types. See the docs (coming soon) on how to easily design your own custom progress bars.
@@ -71,9 +71,8 @@ Alternatively you can also get the bar as a string, in case you want more contro
 ```Python
 for i in range(0, 101): #whatever loop you run
     bar_string = bar.update_bar(i, 100) #give it current step, total steps, and the bar draws itself.
-	#now you are free to do anything you want with the string object, print it, eat it, cook it, whatever!
-	
-	#some time consuming task here
+#now you are free to do anything you want with the string object, print it, eat it, cook it, whatever!
+#some time consuming task here
 ```
 
 Find what presets are available here:
