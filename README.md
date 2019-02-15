@@ -1,30 +1,46 @@
-# Barnacle - Flexible and Fun Progress Bars
+# BARnacle - Flexible and Fun Progress Bars
 
 Barnacle contains progress bars that easily attach themselves to your programs. Use them to fun-up all of your and other's Python applications that require time to execute. It started off as a [Keras plugin (and it still is!)](#keras-plugin) to liven up my deep learning sessions, but has since become more general in scope. 
 
 Get your own Barnacle today!
 
 We have zombies:
+
 ![zombie bar](gifs/Zombie.gif)
+
 Gib:
+
 ![gib bar](gifs/Gib.gif)
+
 Sunglasses:
+
 ![yeah bar](gifs/Yeah.gif)
+
 We hate tables:
+
 ![tableflip bar](gifs/Tableflip.gif)
+
 Tables hate us:
+
 ![gib bar](gifs/Sovietflip.gif)
+
 We LOVE Keras:
+
 ![keras bar](gifs/Keras.gif) [Plugin included](#keras-plugin)
+
 
 Many more presets are available and Barnacle offers the flexibility to design your own as well. Barnacle aims to be a simple rendering engine for progress bars of all types. See the docs (coming soon) on how to easily design your own custom progress bars.
 
 So shut up and take my money already!
+
 ![money bar](gifs/shutupandtakemymoney.gif)
+
 (Except it's free forever!!1!)
 
 \* of course we also have customisable regular progress bars (but you don't really care about that, do you?)
+
 ![regular bar](gifs/Regular1.gif)
+
 ![regular2 bar](gifs/Regular2.gif)
 
 # Installation
