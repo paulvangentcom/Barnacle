@@ -77,9 +77,9 @@ for i in range(0, 101): #whatever loop you run
 
 Find what presets are available here:
 ```Python
-import propy
+import barnacle
 #what presets are included?
-propy.print_presets()
+barnacle.print_presets()
 ```
 
 # Keras Plugin
