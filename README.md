@@ -88,7 +88,7 @@ Barnacle started off as a Keras plugin to make my long model fitting hours more 
 
 ```Python
 import keras #import keras first
-import barnacle_keras #import barnacle keras plugin
+from barnacle import barnacle_keras #import barnacle keras plugin
 
 #you can select a preset and mode
 barnacle_keras.Progbar.preset = 'tableflip' #see docs for full list of presets, 'random' for random
