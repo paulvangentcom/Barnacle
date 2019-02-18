@@ -364,6 +364,7 @@ class display_text():
 
     def __init__(self, textlist=[], width=30, start='[', end=']', update_ticks=2):
         '''initialisation'''
+        print(len(textlist))
         if len(textlist) == 0:
             self.textlist = barnacle_presets.textscroller
         else:
@@ -477,8 +478,11 @@ def random():
         return objectslider_animated(preset='random')
     elif selected['label'] == 'interactionslider':
         return objectslider_interaction(preset='random')
-    elif rand == 3:
+    elif selected['label'] == 'textscroller':
         return display_text()
+    else:
+        print('\nout of bounds! Selecting zombie bar\n' %rand)
+        return objectslider_animated(preset='zombie')
 
 def preset(preset):
     '''
@@ -524,6 +528,6 @@ def fetch_presets():
     for preset in barnacle_presets.objectslider_interaction_presets.keys():
         presets[i] = {'label':'interactionslider', 'preset': preset}
         i += 1
-    presets[i] = {'label': 'textslider', 'preset': barnacle_presets.textscroller}
+    presets[i] = {'label': 'textscroller', 'preset': barnacle_presets.textscroller}
 
     return presets
