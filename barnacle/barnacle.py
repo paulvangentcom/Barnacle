@@ -362,9 +362,8 @@ class display_text():
     function to display text messages every n ticks
     '''
 
-    def __init__(self, textlist=[], width=30, start='[', end=']', update_ticks=2):
+    def __init__(self, textlist=[], width=30, start='[', end=']', update_ticks=5):
         '''initialisation'''
-        print(len(textlist))
         if len(textlist) == 0:
             self.textlist = barnacle_presets.textscroller
         else:
