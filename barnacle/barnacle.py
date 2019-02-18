@@ -1,6 +1,6 @@
 ﻿import numpy as np
 import sys
-from barnacle import barnacle_presets
+from barnacle import barnacle_presets, barnacle_keras
 
 
 class simple_objectslider():
