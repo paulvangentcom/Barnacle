@@ -1,4 +1,4 @@
-# BARnacle - Flexible and Fun Progress Bars
+# Barnacle - Flexible and Fun Progress Bars
 
 Barnacle contains progress bars that easily attach themselves to your programs. Use them to fun-up all of your and others' Python applications that require time to execute. It started off as a [Keras plugin (and it still is!)](#keras-plugin) to liven up my deep learning sessions, but has since become more general in scope. 
 
