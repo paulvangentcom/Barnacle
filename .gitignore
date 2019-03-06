@@ -114,3 +114,8 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# docs
+docs/build/
+docs/make.bat
+docs/Makefile
