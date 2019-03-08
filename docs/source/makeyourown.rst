@@ -119,3 +119,7 @@ Full example:
 	for i in range(0,51):
 		bar.draw(i, 50) #update bar each step
 		time.sleep(0.2) #simulate time consuming loop
+		
+		
+Docs on other bar types coming ASAP
+===================================
