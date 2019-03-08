@@ -9,19 +9,19 @@ github
 ~~~~~~
 `Download latest release here <https://github.com/paulvangentcom/Barnacle>`_
 
-:code: `python setup.py install`
+:code:`python setup.py install`
 
 
 Basic Example
 =============
 The package is easy to use. Load the module, select a preset, and it's good to go.
 
-..code-block:: python
+.. code-block:: python
 	
 	import barnacle #import module
 
 	bar = barnacle.random() #either initialize bar object with a random animation
-	bar = barnacle.preset('zombie') #or with a specific preset (see docs for full list)
+	bar = barnacle.load('zombie') #or with a specific preset (see docs for full list)
 
 	for i in range(0, 101): #whatever loop you run
 		bar.draw(i, 100) #give it current step, total steps, and the bar draws itself.
@@ -35,7 +35,7 @@ The package is easy to use. Load the module, select a preset, and it's good to g
 
 Alternatively you can also get the bar as a string, in case you want more control:
 
-..code-block:: python
+.. code-block:: python
 
 	for i in range(0, 101): #whatever loop you run
 		bar_string = bar.update_bar(i, 100) #give it current step, total steps, and the bar draws itself.
@@ -44,12 +44,13 @@ Alternatively you can also get the bar as a string, in case you want more contro
 		#some time consuming task here
 
 
-
+.. _kerasplugin:
+		
 Keras Plugin
 ============
 Barnacle started off as a Keras plugin to make my long model fitting hours more bearable. This functionality is still available. Usage is also simple:
 
-..code-block:: python
+.. code-block:: python
 
 	import keras #import keras first
 	from barnacle import barnacle_keras #import barnacle keras plugin
@@ -70,7 +71,7 @@ Presets
 		
 Find out what presets are available:
 
-..code-block:: python
+.. code-block:: python
 
 	import barnacle
 	#what presets are included?

@@ -1,7 +1,15 @@
 ﻿import numpy as np
 import sys
-from barnacle import barnacle_presets, barnacle_keras
+from . import _presets
 
+__all__ = ['display_text',
+           'objectslider_animated',
+           'objectslider_interaction',
+           'preset',
+           'print_presets',
+           'random',
+           'simple_objectslider',
+           'standard_bar']
 
 class simple_objectslider():
     '''
@@ -24,28 +32,34 @@ class simple_objectslider():
     -- start: the start character(s) of the bar. default = '['. Useful when reverse=True
     '''
 
-    def __init__(self, preset='', icons=[], width=30, target_icon=False, target_icons=[],
-                 extra_icon=False, extra_odds = 0.2, character_icon='',
-                 reversed=False, start='[', end = ']'):
+    def __init__(self, preset='', icons=[], width=30, target_icons=[],
+                 extra_odds = 0.2, character_icon='', reversed=False, 
+                 start='[', end = ']'):
         '''
         initialisation
         '''
-        self.preset_labels = list(barnacle_presets.simpleslider_presets.keys())
-        self.presets = barnacle_presets.simpleslider_presets
+        self.preset_labels = list(_presets.simpleslider_presets.keys())
+        self.presets = _presets.simpleslider_presets
         self.icons = icons
         self.width = width
-        self.target_icon = target_icon
         self.target_icons = target_icons
-        self.extra_icon = extra_icon
+        if len(self.target_icons) > 0:
+            self.target_icon = True
+        else:
+            self.target_icon = False
+        if len(self.icons) == 5:
+            self.extra_icon = True
+        else:
+            self.extra_icon = False
         self.extra_odds = extra_odds
         self.character_icon = character_icon
         self.reversed = reversed
         self.start = start
         self.end = end
         if len(preset) > 0:
-            self.load_preset(preset)
+            self.load(preset)
 
-    def load_preset(self, preset):
+    def load(self, preset):
         '''
         loads the preset, can be passed correctly formatted dict, or name of preset
         '''
@@ -57,18 +71,25 @@ class simple_objectslider():
                 preset_dict = self.presets[preset]
             else:
                 raise KeyError('Asked for preset that does not exist in the presets file.')
+        elif type(preset) == dict:
+            preset_dict = preset #if dict, pass on and set variables
+        else:
+            raise TypeError('Incorrect preset supplied, either supply preset name or correctly \
+                             formatted dict object. \n See documentation for details: \
+                             barnacle.readthedocs.io')
         
         #set vars
-        self.icons = preset_dict['icons']
-        self.target_icon = preset_dict['target_icon']
-        self.target_icons = preset_dict['target_icons']
-        self.extra_icon = preset_dict['extra_icon']
-        self.extra_odds = preset_dict['extra_odds']
-        self.character_icon = preset_dict['character_icon']
-        self.reversed = preset_dict['reversed']
-        self.start = preset_dict['start']
-        self.end = preset_dict['end']
-
+        for key in preset_dict.keys():
+            self.__dict__[key] = preset_dict[key]
+        if len(self.target_icons) > 0:
+            self.target_icon = True
+        else:
+            self.target_icon = False
+        if len(self.icons) == 5:
+            self.extra_icon = True
+        else:
+            self.extra_icon = False
+        
     def draw(self, currentstep, targetsteps):
         '''
         draws the progressbar through stdout
@@ -147,8 +168,8 @@ class objectslider_interaction():
         '''
         initialisation
         '''
-        self.preset_labels = list(barnacle_presets.objectslider_interaction_presets.keys())
-        self.presets = barnacle_presets.objectslider_interaction_presets
+        self.preset_labels = list(_presets.objectslider_interaction_presets.keys())
+        self.presets = _presets.objectslider_interaction_presets
         self.icons = icons
         self.target_icons = target_icons
         self.width = width
@@ -156,10 +177,10 @@ class objectslider_interaction():
         self.start = start
         self.end = end
         if len(preset) > 0:
-            self.load_preset(preset)
+            self.load(preset)
         self.width += len(self.target_icons[0])
 
-    def load_preset(self, preset):
+    def load(self, preset):
         '''
         loads the preset, can be passed correctly formatted dict, or name of preset
         '''
@@ -171,13 +192,16 @@ class objectslider_interaction():
                 preset_dict = self.presets[preset]
             else:
                 raise KeyError('Asked for preset that does not exist in the presets file.')
-        
+        elif type(preset) == dict:
+            preset_dict = preset #if dict, pass on and set variables
+        else:
+            raise TypeError('Incorrect preset supplied, either supply preset name or correctly \
+                             formatted dict object. \n See documentation for details: \
+                             barnacle.readthedocs.io')
+
         #set vars
-        self.icons = preset_dict['icons']
-        self.target_icons = preset_dict['target_icons']
-        self.interaction_step = preset_dict['interaction_step']
-        self.start = preset_dict['start']
-        self.end = preset_dict['end']
+        for key in preset_dict.keys():
+            self.__dict__[key] = preset_dict[key]
 
     def draw(self, currentstep, targetsteps):
         '''
@@ -254,14 +278,14 @@ class objectslider_animated():
     def __init__(self, preset='', icons=[], width=30, start='[', end=']', order=False, 
                  framenumber=2, update_ticks=1, update_method='tick'):
         '''initialisation'''
-        self.preset_labels = list(barnacle_presets.objectslider_animated_presets.keys())
-        self.presets = barnacle_presets.objectslider_animated_presets
+        self.preset_labels = list(_presets.objectslider_animated_presets.keys())
+        self.presets = _presets.objectslider_animated_presets
         self.icons = icons
         self.numframes = len(icons)
         self.width = width
         if len(icons) > 2:
             #set only if custom iconlist provided, otherwise this is instantiated
-            #later in the load_preset call
+            #later in the load call
             self.maxwidth = max([len(x) for x in self.icons[2:]]) 
         self.tick = 1
         self.framenumber = framenumber
@@ -272,9 +296,9 @@ class objectslider_animated():
         self.order = order
         self.prev_prog = 0 #keep track of previous progress state
         if len(preset) > 0:
-            self.load_preset(preset)
+            self.load(preset)
 
-    def load_preset(self, preset):
+    def load(self, preset):
         '''
         loads the preset, can be passed correctly formatted dict, or name of preset
         '''
@@ -286,17 +310,16 @@ class objectslider_animated():
                 preset_dict = self.presets[preset]
             else:
                 raise KeyError('Asked for preset that does not exist in the presets file.')
-        
+        elif type(preset) == dict:
+            preset_dict = preset #if dict, pass on and set variables
+        else:
+            raise TypeError('Incorrect preset supplied, either supply preset name or correctly \
+                             formatted dict object. \n See documentation for details: \
+                             barnacle.readthedocs.io')
+
         #set vars
-        self.icons = preset_dict['icons']
-        self.start = preset_dict['start']
-        self.end = preset_dict['end']
-        self.order = preset_dict['order']
-        self.framenumber = preset_dict['framenumber']
-        self.update_ticks = preset_dict['update_ticks']
-        self.update_methods = preset_dict['update_method']
-        self.numframes = len(self.icons)
-        self.maxwidth = max([len(x) for x in self.icons[2:]]) 
+        for key in preset_dict.keys():
+            self.__dict__[key] = preset_dict[key]
 
     def check_update(self, left):
         '''
@@ -365,7 +388,7 @@ class display_text():
     def __init__(self, textlist=[], width=30, start='[', end=']', update_ticks=5):
         '''initialisation'''
         if len(textlist) == 0:
-            self.textlist = barnacle_presets.textscroller
+            self.textlist = _presets.textscroller
         else:
             self.textlist = textlist
         self.width = max([len(x) for x in self.textlist])
@@ -374,6 +397,13 @@ class display_text():
         self.update_ticks = update_ticks
         self.tick = 1
         self.active_text = self.textlist[np.random.randint(0, len(self.textlist))]
+
+    def load(self, preset):
+        '''
+        loads the preset, can be passed correctly formatted dict, or name of preset
+        '''
+        for key in preset_dict.keys():
+            self.__dict__[key] = preset_dict[key]
 
     def reset(self):
         '''resets relevant counters after completion'''
@@ -487,13 +517,13 @@ def preset(preset):
     '''
     instantiates a preset progress bar based on name
     '''
-    if preset in barnacle_presets.simpleslider_presets: #if simpleslider
+    if preset in _presets.simpleslider_presets: #if simpleslider
         return simple_objectslider(preset=preset)
-    elif preset in barnacle_presets.objectslider_animated_presets:
+    elif preset in _presets.objectslider_animated_presets:
         return objectslider_animated(preset=preset)
     elif preset == 'textscroller':
         return display_text()
-    elif preset in barnacle_presets.objectslider_interaction_presets:
+    elif preset in _presets.objectslider_interaction_presets:
         return objectslider_interaction(preset=preset)
     else:
         raise KeyError('Asked for preset that does not exist in the presets file.')
@@ -503,30 +533,30 @@ def print_presets():
     prints the presets available in the various progress bar types
     '''
     presets = []
-    for preset in barnacle_presets.simpleslider_presets.keys():
+    for preset in _presets.simpleslider_presets.keys():
         presets.append(preset)
-    for preset in barnacle_presets.objectslider_animated_presets.keys():
+    for preset in _presets.objectslider_animated_presets.keys():
         presets.append(preset)
-    for preset in barnacle_presets.objectslider_interaction_presets.keys():
+    for preset in _presets.objectslider_interaction_presets.keys():
         presets.append(preset)
 
     print(sorted(presets))
 
 def fetch_presets():
     '''
-    prints the presets available in the various progress bar types
+    returns the presets available in the various progress bar types
     '''
     presets = {}
     i = 0
-    for preset in barnacle_presets.simpleslider_presets.keys():
+    for preset in _presets.simpleslider_presets.keys():
         presets[i] = {'label':'simpleslider', 'preset': preset}
         i += 1
-    for preset in barnacle_presets.objectslider_animated_presets.keys():
+    for preset in _presets.objectslider_animated_presets.keys():
         presets[i] = {'label':'animatedslider', 'preset': preset}
         i += 1
-    for preset in barnacle_presets.objectslider_interaction_presets.keys():
+    for preset in _presets.objectslider_interaction_presets.keys():
         presets[i] = {'label':'interactionslider', 'preset': preset}
         i += 1
-    presets[i] = {'label': 'textscroller', 'preset': barnacle_presets.textscroller}
+    presets[i] = {'label': 'textscroller', 'preset': _presets.textscroller}
 
     return presets

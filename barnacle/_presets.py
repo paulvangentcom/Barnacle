@@ -1,4 +1,6 @@
-﻿simpleslider_presets = {
+﻿__all__ = []
+
+simpleslider_presets = {
                 'boobies': {'icons': ['ԅ(°o°ԅ)', 'ԅ(^-^ԅ)', ' ', ' '],
                 'target_icon': False, 'target_icons': [], 
                 'extra_icon': False, 'extra_odds': 0.2,

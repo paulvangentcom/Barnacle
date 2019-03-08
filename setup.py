@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="barnacle",
-    version="0.8",
+    version="0.8.2",
     author="Paul van Gent",
     author_email="info@paulvangent.com",
     description="Flexible and Fun Progress Bars",
