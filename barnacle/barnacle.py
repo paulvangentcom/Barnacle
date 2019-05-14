@@ -283,6 +283,7 @@ class objectslider_animated():
         self.icons = icons
         self.numframes = len(icons)
         self.width = width
+        self.maxwidth = width
         if len(icons) > 2:
             #set only if custom iconlist provided, otherwise this is instantiated
             #later in the load call
